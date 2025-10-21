@@ -2,11 +2,7 @@
 
 A modern, responsive e-commerce front-end application for a fictional houseplant store, built with React and Redux.
 
-### [Live Demo](https://YOUR_PROJECT_NAME.vercel.app/) <!-- IMPORTANT: Add your Vercel link here! -->
-
-![Screenshot of the Paradise Nursery Application](./screenshot.png) <!-- Pro tip: Add a nice screenshot! -->
-
----
+### [Live Demo](https://greensbyhb.netlify.app/) <!-- IMPORTANT: Add your Vercel link here! -->
 
 ## Features
 
@@ -36,7 +32,7 @@ To run this project locally:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git
+    git clone https://github.com/harshabathala12/React-redux-ecommerce-store.git
     ```
 2.  **Navigate to the project directory:**
     ```bash
