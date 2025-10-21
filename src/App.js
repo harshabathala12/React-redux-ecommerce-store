@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast'; // Import Toaster
+import { AnimatePresence } from 'framer-motion'; // Import AnimatePresence
+
+import Header from './components/Header';
+import Footer from './components/Footer'; // Import Footer
+import LoadingSpinner from './components/LoadingSpinner';
+
+// Lazy load pages for code splitting
+const LandingPage = React.lazy(() => import('./pages/LandingPage'));
+const ProductListingPage = React.lazy(() => import('./pages/ProductListingPage'));
+const ShoppingCartPage = React.lazy(() => import('./pages/ShoppingCartPage'));
+const ConfirmationPage = React.lazy(() => import('./pages/ConfirmationPage'));
+const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {/* Toaster for notifications */}
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: '#333',
+            color: '#fff',
+          },
+        }}
+      />
+      <Header />
+      <main>
+        <Suspense fallback={<LoadingSpinner />}>
+          {/* AnimatePresence for page transitions */}
+          <AnimatePresence mode="wait">
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/products" element={<ProductListingPage />} />
+              <Route path="/cart" element={<ShoppingCartPage />} />
+              <Route path="/confirmation" element={<ConfirmationPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </AnimatePresence>
+        </Suspense>
+      </main>
+      <Footer /> {/* Add Footer */}
+    </Router>
   );
 }
 
